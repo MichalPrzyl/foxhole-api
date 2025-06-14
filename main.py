@@ -17,7 +17,7 @@ app.add_middleware(
 def read_root():
 
     x = FoxholeManager()
-    x.main()
+    api_data = x.main()
 
-    return {"message": "Hello from FastAPI"}
+    return {"data": api_data}
 

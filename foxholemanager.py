@@ -34,7 +34,9 @@ class FoxholeManager:
         maps = self.get_maps()
         print(f"\n🌍 Liczba map: {len(maps)}")
         #
-        random_map = random.choice(maps)
+        # random_map = random.choice(maps)
+        random_map = maps[28]
+        # 13, 28
         print("🎯 Losowa mapa:", random_map)
 
         dynamic = self.get_map_dynamic_data(random_map)
@@ -42,6 +44,8 @@ class FoxholeManager:
         print("\n📌 Obiekty na mapie:")
         for item in dynamic["mapItems"]:
             print(f" - Frakcja: {item['teamId']}, Typ: {item['iconType']}, Koordynaty: ({item['x']}, {item['y']})")
+
+        return dynamic["mapItems"]
 
 
     # print(f"dynamic: {dynamic}")
