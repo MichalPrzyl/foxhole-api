@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from foxholemanager import FoxholeManager
 
 app = FastAPI()
 
@@ -14,5 +15,9 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
+
+    x = FoxholeManager()
+    x.main()
+
     return {"message": "Hello from FastAPI"}
 
