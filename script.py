@@ -1,6 +1,6 @@
 import requests
 import random
-import time
+from datetime import datetime
 
 BASE_URL = "https://war-service-live.foxholeservices.com/api"
 
@@ -19,25 +19,31 @@ def get_map_dynamic_data(map_name):
     res.raise_for_status()
     return res.json()
 
+def format_timestamp(ms):
+    return datetime.fromtimestamp(ms / 1000).strftime('%Y-%m-%d %H:%M:%S')
+
 def main():
     war = get_war_status()
-    # print(f"war: {war}")
-    # print("🔹 Wojna trwa:", war["warNumber"])
-    # print("🔹 Dzień wojny:", war["dayOfWar"])
-    # print("🔹 Zwycięska frakcja (do tej pory):", war.get("winner", "brak"))
+    print("🪖 Wojna ID:", war["warId"])
+    print("🔹 Wojna nr:", war["warNumber"])
+    print("📆 Start wojny:", format_timestamp(war["conquestStartTime"]))
+    print("🏆 Zwycięzca:", war["winner"])
+    print("📊 Towns do zwycięstwa:", war["requiredVictoryTowns"])
 
-    # maps = get_maps()
-    # print(f"🔹 Liczba map: {len(maps)}")
-
-    # random_map = random.choice(maps)
-    # print("🔹 Losowa mapa:", random_map)
-
-    # dynamic = get_map_dynamic_data(random_map)
+    maps = get_maps()
+    print(f"\n🌍 Liczba map: {len(maps)}")
     #
-    # print("🔹 Przykładowe obiekty na mapie:")
-    # for item in dynamic["mapItems"][:5]:  # tylko pierwsze 5
-    #     print(f" - {item['teamId']} | {item['iconType']} | x={item['x']}, y={item['y']}")
+    random_map = random.choice(maps)
+    print("🎯 Losowa mapa:", random_map)
 
+    dynamic = get_map_dynamic_data(random_map)
+
+    print("\n📌 Obiekty na mapie:")
+    for item in dynamic["mapItems"]:
+        print(f" - Frakcja: {item['teamId']}, Typ: {item['iconType']}, Koordynaty: ({item['x']}, {item['y']})")
+
+
+    # print(f"dynamic: {dynamic}")
 if __name__ == "__main__":
     main()
 
