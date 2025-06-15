@@ -1,6 +1,6 @@
-POINT_WIDTH = 5
-POINT_HEIGHT = 5
-MULTIPLIER = 500
+POINT_WIDTH = 20
+POINT_HEIGHT = 20
+MULTIPLIER = 25
 
 
 function getColor(fraction){
@@ -19,8 +19,15 @@ function getColor(fraction){
 }
 
 function drawPoint(ctx, point, color){
+  // MapIconSalvage.jpg
+  // ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
   ctx.fillStyle = color;
-  ctx.fillRect(point.x * MULTIPLIER, point.y * MULTIPLIER, POINT_WIDTH, POINT_HEIGHT);
+
+  // scaling to canvas w & h
+  const canvas = ctx.canvas;
+  const x = point.x * canvas.width;
+  const y = point.y * canvas.height;
+  ctx.fillRect(x, y, POINT_WIDTH, POINT_HEIGHT);
 }
 
 // function drawPoint(ctx, point, color) {
@@ -44,20 +51,14 @@ async function abc () {
   const response = await fetch(baseUrl);
   const data = await response.json();
   console.log(data);
-  const newData = data.data.map(el => ({...el, x: Number(el.x.toFixed(2)), y: Number(el.y.toFixed(2))}))
+  // const newData = data.data.map(el => ({...el, x: Number(el.x.toFixed(2)), y: Number(el.y.toFixed(2))}))
   // const newData = data.data.map(el => el)
-  console.log(newData);
+  // console.log(newData);
 
   data.data.forEach(point => {
     const color = getColor(point.teamId);
     drawPoint(ctx, point, color);
   });
-
-
-
-  // ctx.fillStyle = "green";
-  // ctx.fillRect(0, 0, 150, 75);
-  console.log("strarting.")
 }
 
 
