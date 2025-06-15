@@ -21,6 +21,7 @@ function getColor(fraction){
 function drawPoint(ctx, point, color){
   // MapIconSalvage.jpg
   // ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  //   const imgPath20 = "images/MapIconSalvage.jpg"
   ctx.fillStyle = color;
 
   // scaling to canvas w & h
