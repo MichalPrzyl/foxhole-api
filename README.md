@@ -1,4 +1,5 @@
 # Foxhole - front visualisator
+
 Foxhole is a game. People are fighting as a fraction with other fractions. The key is the communication, logistics and teamwork.
 
 I created that visualisator just for fun. I haven't even played the game.
@@ -19,6 +20,7 @@ I don't reccomend using that anywhere except for just messing around and checkin
 
 
 # TODOS
+
 - add grid lines
 - add segments
 - add icons to objects so they would be more recognicable by players
@@ -30,6 +32,7 @@ I don't reccomend using that anywhere except for just messing around and checkin
 - host it
 
 # Screenshoot
+
 <div align="center">
     <img width=500 src=".readme/images/foxhole-screen-1.png"></img/>
 </div>
